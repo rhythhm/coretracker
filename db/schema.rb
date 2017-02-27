@@ -57,8 +57,9 @@ ActiveRecord::Schema.define(version: 20170227045422) do
   end
 
   create_table "stores", force: :cascade do |t|
-    t.string   "name"
+    t.string   "store_name"
     t.integer  "store_code"
+    t.string   "lfl_flag"
     t.string   "store_grade"
     t.string   "store_location"
     t.string   "store_region"
