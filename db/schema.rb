@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224102015) do
+ActiveRecord::Schema.define(version: 20170227045422) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20170224102015) do
   end
 
   create_table "stores", force: :cascade do |t|
-    t.string   "store_name"
+    t.string   "name"
     t.integer  "store_code"
     t.string   "store_grade"
     t.string   "store_location"
@@ -71,6 +71,31 @@ ActiveRecord::Schema.define(version: 20170224102015) do
     t.integer  "group_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "styles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "style_number"
+    t.integer  "item_code"
+    t.string   "color"
+    t.string   "made_up_desc"
+    t.string   "sub_category"
+    t.string   "season_type"
+    t.string   "size"
+    t.string   "mrp"
+    t.integer  "SOH"
+    t.integer  "ARP"
+    t.integer  "sale_qty"
+    t.integer  "cy_salevalue"
+    t.integer  "py_salevalue"
+    t.integer  "cy_mrp_salevalue"
+    t.integer  "py_mrp_salevalue"
+    t.integer  "store_id"
+    t.integer  "brand_id"
+    t.integer  "category_id"
+    t.integer  "group_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
 end
