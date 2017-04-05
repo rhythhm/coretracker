@@ -95,6 +95,15 @@ config.model CoreTrackerTemplate do
     field :last_180days_saleqty do
       end
 
+      field :roh do
+      end
+
+      field :soh_by_roh do
+      end
+
+      field soh_oo_roh do
+      end
+
 
   end
 end

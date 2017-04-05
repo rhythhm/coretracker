@@ -1,27 +1,23 @@
 class CoreTrackerTemplate < ActiveRecord::Base
 
-  def ROS
-   (last_180days_saleqty /180)
+  def roh
+    (self.last_180days_saleqty / 180)
   end
 
-  def SOHbyROS
+  def soh_by_roh
     if last_180days_saleqty == 0
-      return 0
-    else
-      ((soh / last_180days_saleqty ) *180)
-    end
+     return 0
+   else
+     (soh / last_180days_saleqty * 180)
+   end
   end
 
-
-
-  def SOH_OO_ROS
+  def soh_oo_roh
     if last_180days_saleqty == 0
-      return 0
-    else
-      ((soh + open_po )/ last_180days_saleqty * 180)
-    end
+     return 0
+   else
+     (soh + open_po ) / last_180days_saleqty * 180
+   end
   end
-
-
 
 end
