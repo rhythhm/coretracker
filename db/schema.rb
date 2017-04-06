@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405212216) do
+ActiveRecord::Schema.define(version: 20170405205121) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -64,9 +64,6 @@ ActiveRecord::Schema.define(version: 20170405212216) do
     t.integer  "last_180days_saleqty"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
-    t.float    "roh"
-    t.float    "soh_by_roh"
-    t.float    "soh_oo_roh"
   end
 
   create_table "groups", force: :cascade do |t|

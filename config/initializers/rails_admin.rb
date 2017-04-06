@@ -64,15 +64,15 @@ config.model CoreTrackerTemplate do
       end
     #t.string :sub_cat
     #t.string :made_up_desc
-    t.string :style do
-      end
-    t.string :color do
-      end
-    t.integer :sizee do
-      end
-    #t.integer :mrp
-    t.string :item_code do
-      end
+    # t.string :style do
+    #   end
+    # t.string :color do
+    #   end
+    # t.integer :sizee do
+    #   end
+    # #t.integer :mrp
+    # t.string :item_code do
+    #   end
     #t.string :ean_code
     #t.integer :base_stock
     field :soh do
@@ -101,7 +101,7 @@ config.model CoreTrackerTemplate do
       field :soh_by_roh do
       end
 
-      field soh_oo_roh do
+      field :soh_oo_roh do
       end
 
 
