@@ -52,8 +52,8 @@ config.model CoreTrackerTemplate do
       end
     field :region do
       end
-    #field :default_wh do
-     # end
+    field :default_wh do
+      end
     field :brand_name do
       end
     field :group_name do
@@ -62,17 +62,19 @@ config.model CoreTrackerTemplate do
       end
     field :category do
       end
-    #t.string :sub_cat
-    #t.string :made_up_desc
-    # t.string :style do
-    #   end
-    # t.string :color do
-    #   end
-    # t.integer :sizee do
-    #   end
+    field :sub_cat do
+      end
+    field :made_up_desc do
+      end
+    field :style do
+      end
+    field :color do
+      end
+    field :sizee do
+      end
     # #t.integer :mrp
-    # t.string :item_code do
-    #   end
+    field :item_code do
+     end
     #t.string :ean_code
     #t.integer :base_stock
     field :soh do

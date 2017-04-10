@@ -1,7 +1,15 @@
 class PivotController < ApplicationController
   def index
     @core_tracker_templates = CoreTrackerTemplate.find(:all,
-                       :select => "brand_name, group_name, sum(core_tracker_templates.cy_saleqty) AS sum_cy_saleqty",
+                       :select => "brand_name, group_name,
+                       sum(core_tracker_templates.cy_saleqty) AS sum_cy_saleqty,
+                       sum(soh) AS sum_soh,
+                       sum(last_180days_saleqty) AS sum_last_180days_saleqty",
                        :group => "brand_name, group_name")
+
   end
 end
+
+
+# sum(soh_by_roh) AS sum_soh_by_roh,
+  #                     sum(soh_oo_roh) AS sum_soh_oo_roh
