@@ -1,0 +1,18 @@
+.container
+  %h2 Basic Table
+  %p Sample for only group and brand name, will add options to select columns etc later.
+  %table.table
+    %thead
+      %tr
+        %th Group Name
+        %th Brand Name
+        %th Sum of Current year Sales.
+    %tbody
+      - @core_tracker_templates.each do |core_tracker_template|
+        %tr
+          %td
+            = core_tracker_template.group_name
+          %td
+            = core_tracker_template.brand_name
+          %td
+            = core_tracker_template.sum_cy_saleqty

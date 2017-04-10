@@ -27,6 +27,11 @@ gem "roo", "~> 2.7.0"
 
 gem "iconv", "~> 1.0.3"
 
+gem "twitter-bootstrap-rails"
+
+gem 'activerecord-deprecated_finders', require: 'active_record/deprecated_finders'
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
