@@ -4,9 +4,11 @@ class PivotController < ApplicationController
                        :select => "brand_name, group_name,
                        sum(core_tracker_templates.cy_saleqty) AS sum_cy_saleqty,
                        sum(soh) AS sum_soh,
-                       sum(last_180days_saleqty) AS sum_last_180days_saleqty",
+                       sum(last_180days_saleqty) AS sum_last_180days_saleqty,
+                       GROUP_CONCAT(last_180days_saleqty, ',') AS single_last_180days_saleqty,
+                       GROUP_CONCAT(soh, ',') AS single_soh,
+                       GROUP_CONCAT(open_po, ',') AS single_open_po",
                        :group => "brand_name, group_name")
-
   end
 end
 
