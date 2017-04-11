@@ -11,6 +11,8 @@
         %th Sum of Sales in last 180 days.
         %th Sum of SOH by ROH
         %th Sum of SOH open order ROH
+        %th core sales nod soh
+        %th core sales nod soh oo
         /You'll do the last one? yes yes
 
     %tbody
@@ -26,7 +28,6 @@
             = core_tracker_template.sum_soh
           %td
             = core_tracker_template.sum_last_180days_saleqty
-
           %td
             - sum_of_soh_by_roh = 0
             - last_sales = core_tracker_template.single_last_180days_saleqty.split(',')
@@ -44,3 +45,11 @@
               - if last_180days_saleqty != "0"
                 - sum_of_soh_oo_roh = sum_of_soh_oo_roh + ((soh_array[index].to_f + open_po_array[index].to_f) / last_180days_saleqty.to_f * 180.00)
             = sum_of_soh_oo_roh
+          %td
+            = (sum_of_soh_by_roh.to_f + core_tracker_template.sum_last_180days_saleqty.to_f + core_tracker_template.sum_soh.to_f)
+          %td
+            = (sum_of_soh_oo_roh + core_tracker_template.sum_last_180days_saleqty + core_tracker_template.sum_soh)
+
+
+
+
