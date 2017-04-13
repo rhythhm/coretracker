@@ -12,8 +12,10 @@ class PivotController < ApplicationController
 
     @count_of_arp = CoreTrackerTemplate.where('arp_max > 0').count
     @count_of_arp_soh = CoreTrackerTemplate.where('arp_max > 0 AND soh > 0').count
-
-
+    @zero_arp = CoreTrackerTemplate.where('arp_max = 0').find(:all,
+                       :select => "brand_name, group_name, category, style, color, sizee, item_code, arp_max, soh")
+    @soh_lessthan_arp = CoreTrackerTemplate.where('soh < arp_max').find(:all,
+                       :select => "brand_name, group_name, category, style, color, sizee, item_code, arp_max, soh")
 
 
   end
