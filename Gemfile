@@ -31,7 +31,7 @@ gem "twitter-bootstrap-rails"
 
 gem 'activerecord-deprecated_finders', require: 'active_record/deprecated_finders'
 
-
+gem 'devise'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
