@@ -53,7 +53,10 @@
         %th Sum of Sales in last 180 days.
         %th Sum of SOH by ROH
         %th Sum of SOH open order ROH
-        /You'll do the last one? yes yes
+        %th core sales nod soh
+        %th core sales nod soh oo
+        %th Count arp
+
 
     %tbody
       - @core_tracker_templates.each do |core_tracker_template|
@@ -68,7 +71,6 @@
             = core_tracker_template.sum_soh
           %td
             = core_tracker_template.sum_last_180days_saleqty
-
           %td
             - sum_of_soh_by_roh = 0
             - if !core_tracker_template.single_last_180days_saleqty.nil?
@@ -88,3 +90,147 @@
                 - if last_180days_saleqty != "0"
                   - sum_of_soh_oo_roh = sum_of_soh_oo_roh + ((soh_array[index].to_f + open_po_array[index].to_f) / last_180days_saleqty.to_f * 180.00)
             = sum_of_soh_oo_roh
+=======
+            - last_sales = core_tracker_template.single_last_180days_saleqty.split(',')
+            - soh_array = core_tracker_template.single_soh.split(',')
+            - open_po_array = core_tracker_template.single_open_po.split(',')
+            - last_sales.each_with_index do |last_180days_saleqty, index|
+              - if last_180days_saleqty != "0"
+                - sum_of_soh_oo_roh = sum_of_soh_oo_roh + ((soh_array[index].to_f + open_po_array[index].to_f) / last_180days_saleqty.to_f * 180.00)
+            = sum_of_soh_oo_roh
+          %td
+            = (sum_of_soh_by_roh.to_f + core_tracker_template.sum_last_180days_saleqty.to_f + core_tracker_template.sum_soh.to_f)
+          %td
+            = (sum_of_soh_oo_roh + core_tracker_template.sum_last_180days_saleqty + core_tracker_template.sum_soh)
+
+          %td
+            = core_tracker_template.count_of_arp
+
+
+.container
+  %h2 Table number 2
+  %p Sample for availability
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Count arp
+        %th count soh
+        %th % of availability overall
+
+
+    %tbody
+
+      %tr
+        %td
+          = @count_of_arp
+        %td
+          = @count_of_arp_soh
+        %td
+          = (@count_of_arp_soh.to_f/@count_of_arp.to_f)*100
+
+.container
+  %h2 ARP with ZERO values
+  %p arp 0 values.
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Brand Name
+        %th Group Name
+        %th Category
+        %th Style
+        %th Color
+        %th Sizee
+        %th Item code
+        %th SOH
+        %th ARP value
+
+
+    %tbody
+      - @zero_arp.each do |zero_arp|
+        %tr
+          %td
+            = zero_arp.brand_name
+          %td
+            = zero_arp.group_name
+          %td
+            = zero_arp.category
+          %td
+            = zero_arp.style
+          %td
+            = zero_arp.color
+          %td
+            = zero_arp.sizee
+          %td
+            = zero_arp.item_code
+          %td
+            = zero_arp.soh
+          %td
+            = zero_arp.arp_max
+      %tr
+        %td
+          %b
+            = "TOTAL: " + @zero_arp.count.to_s
+
+
+  /container
+  /h2 ZERO arp count
+  /p arp = 0
+  /table.table.table-striped
+  /thead
+  /tr
+  /th Count of zero arp
+
+
+  /tbody
+
+  /tr
+  /td
+  /zero_arp.count
+
+
+.container
+  %h2 soh less than arp
+  %p soh<arp
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Brand Name
+        %th Group Name
+        %th Category
+        %th Style
+        %th Color
+        %th Sizee
+        %th Item code
+        %th SOH
+        %th ARP value
+
+
+
+    %tbody
+      - @soh_lessthan_arp.each do |soh_lessthan_arp|
+        %tr
+          %td
+            = soh_lessthan_arp.brand_name
+          %td
+            = soh_lessthan_arp.group_name
+          %td
+            = soh_lessthan_arp.category
+          %td
+            = soh_lessthan_arp.style
+          %td
+            = soh_lessthan_arp.color
+          %td
+            = soh_lessthan_arp.sizee
+          %td
+            = soh_lessthan_arp.item_code
+          %td
+            = soh_lessthan_arp.soh
+          %td
+            = soh_lessthan_arp.arp_max
+      %tr
+        %td
+          %b
+            = "TOTAL: " + @soh_lessthan_arp.count.to_s
+
+
+
