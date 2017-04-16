@@ -1,7 +1,7 @@
 .container
-
-.container
   %h2 Select Pivots from the list
+  .pull-right
+    %a.btn.btn-default.export{:href => '#'} Export to excel
   .row.text-center
     %br/
     %form
@@ -43,22 +43,21 @@
       %button.btn.btn-default{:type => "submit"} Submit
 
 
-  %table.table.table-striped
-    %thead
-      %tr
-        %th Group Name
-        %th Brand Name
-        %th Sum of Current year Sales.
-        %th Sum of SOH.
-        %th Sum of Sales in last 180 days.
-        %th Sum of SOH by ROH
-        %th Sum of SOH open order ROH
-        %th core sales nod soh
-        %th core sales nod soh oo
-        %th Count arp
+  #dvData
+    %table.table.table-striped
+      %tr{:style => "font-weight: bold"}
+        %td Group Name
+        %td Brand Name
+        %td Sum of Current year Sales.
+        %td Sum of SOH.
+        %td Sum of Sales in last 180 days.
+        %td Sum of SOH by ROH
+        %td Sum of SOH open order ROH
+        %td core sales nod soh
+        %td core sales nod soh oo
+        %td Count arp
 
 
-    %tbody
       - @core_tracker_templates.each do |core_tracker_template|
         %tr
           %td
@@ -90,18 +89,10 @@
                 - if last_180days_saleqty != "0"
                   - sum_of_soh_oo_roh = sum_of_soh_oo_roh + ((soh_array[index].to_f + open_po_array[index].to_f) / last_180days_saleqty.to_f * 180.00)
             = sum_of_soh_oo_roh
-=======
-            - last_sales = core_tracker_template.single_last_180days_saleqty.split(',')
-            - soh_array = core_tracker_template.single_soh.split(',')
-            - open_po_array = core_tracker_template.single_open_po.split(',')
-            - last_sales.each_with_index do |last_180days_saleqty, index|
-              - if last_180days_saleqty != "0"
-                - sum_of_soh_oo_roh = sum_of_soh_oo_roh + ((soh_array[index].to_f + open_po_array[index].to_f) / last_180days_saleqty.to_f * 180.00)
-            = sum_of_soh_oo_roh
           %td
             = (sum_of_soh_by_roh.to_f + core_tracker_template.sum_last_180days_saleqty.to_f + core_tracker_template.sum_soh.to_f)
           %td
-            = (sum_of_soh_oo_roh + core_tracker_template.sum_last_180days_saleqty + core_tracker_template.sum_soh)
+            = (sum_of_soh_oo_roh.to_f + core_tracker_template.sum_last_180days_saleqty.to_f + core_tracker_template.sum_soh.to_f)
 
           %td
             = core_tracker_template.count_of_arp
@@ -171,23 +162,6 @@
           %b
             = "TOTAL: " + @zero_arp.count.to_s
 
-
-  /container
-  /h2 ZERO arp count
-  /p arp = 0
-  /table.table.table-striped
-  /thead
-  /tr
-  /th Count of zero arp
-
-
-  /tbody
-
-  /tr
-  /td
-  /zero_arp.count
-
-
 .container
   %h2 soh less than arp
   %p soh<arp
@@ -232,5 +206,84 @@
           %b
             = "TOTAL: " + @soh_lessthan_arp.count.to_s
 
+:javascript
+  $(document).ready(function () {
 
+      function exportTableToCSV($table, filename) {
 
+          var $rows = $table.find('tr:has(td)'),
+
+              // Temporary delimiter characters unlikely to be typed by keyboard
+              // This is to avoid accidentally splitting the actual contents
+              tmpColDelim = String.fromCharCode(11), // vertical tab character
+              tmpRowDelim = String.fromCharCode(0), // null character
+
+              // actual delimiter characters for CSV format
+              colDelim = '","',
+              rowDelim = '"\r\n"',
+
+              // Grab text from table into CSV formatted string
+              csv = '"' + $rows.map(function (i, row) {
+                  var $row = $(row),
+                      $cols = $row.find('td');
+
+                  return $cols.map(function (j, col) {
+                      var $col = $(col),
+                          text = $col.text();
+
+                      return text.replace(/"/g, '""'); // escape double quotes
+
+                  }).get().join(tmpColDelim);
+
+              }).get().join(tmpRowDelim)
+                  .split(tmpRowDelim).join(rowDelim)
+                  .split(tmpColDelim).join(colDelim) + '"';
+
+          // Deliberate 'false', see comment below
+          if (false && window.navigator.msSaveBlob) {
+
+              var blob = new Blob([decodeURIComponent(csv)], {
+                  type: 'text/csv;charset=utf8'
+              });
+
+              // Crashes in IE 10, IE 11 and Microsoft Edge
+              // See MS Edge Issue #10396033: https://goo.gl/AEiSjJ
+              // Hence, the deliberate 'false'
+              // This is here just for completeness
+              // Remove the 'false' at your own risk
+              window.navigator.msSaveBlob(blob, filename);
+
+          } else if (window.Blob && window.URL) {
+              // HTML5 Blob
+              var blob = new Blob([csv], { type: 'text/csv;charset=utf8' });
+              var csvUrl = URL.createObjectURL(blob);
+
+              $(this)
+                  .attr({
+                      'download': filename,
+                      'href': csvUrl
+                  });
+          } else {
+              // Data URI
+              var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+
+              $(this)
+                  .attr({
+                      'download': filename,
+                      'href': csvData,
+                      'target': '_blank'
+                  });
+          }
+      }
+
+      // This must be a hyperlink
+      $(".export").on('click', function (event) {
+          // CSV
+          var args = [$('#dvData>table'), 'export.csv'];
+
+          exportTableToCSV.apply(this, args);
+
+          // If CSV, don't do event.preventDefault() or return false
+          // We actually need this to be a typical hyperlink
+      });
+  });

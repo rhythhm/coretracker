@@ -41,6 +41,7 @@ GEM
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-table-rails (1.11.1.1)
     builder (3.2.3)
     byebug (9.0.6)
     chartkick (2.2.3)
@@ -208,6 +209,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-deprecated_finders
+  bootstrap-table-rails
   byebug
   chartkick
   coffee-rails (~> 4.1.0)
