@@ -1,6 +1,48 @@
 .container
-  %h2 Basic Table
-  %p Sample for only group and brand name, will add options to select columns etc later.
+
+.container
+  %h2 Select Pivots from the list
+  .row.text-center
+    %br/
+    %form
+      %label.btn.btn-primary{:for => "primary"}
+        Brand Name
+        - if params['brand_name'] == 'on' || @default == 'on'
+          %input#primary.badgebox{:type => "checkbox", :name => "brand_name", :checked => 'checked'}/
+        - else
+          %input#primary.badgebox{:type => "checkbox", :name => "brand_name"}/
+        %span.badge &check;
+      %label.btn.btn-danger{:for => "danger"}
+        Group Name
+        - if params['group_name'] == 'on'
+          %input#danger.badgebox{:type => "checkbox", :name => "group_name", :checked => 'checked'}/
+        - else
+          %input#danger.badgebox{:type => "checkbox", :name => "group_name"}/
+        %span.badge &check;
+      %label.btn.btn-info{:for => "info"}
+        Store Name
+        - if params['store_name'] == 'on'
+          %input#info.badgebox{:type => "checkbox", :name => "store_name", :checked => 'checked'}/
+        - else
+          %input#info.badgebox{:type => "checkbox", :name => "store_name"}/
+        %span.badge &check;
+      %label.btn.btn-success{:for => "success"}
+        Item Code
+        - if params['item_code'] == 'on'
+          %input#success.badgebox{:type => "checkbox", :name => "item_code", :checked => 'checked'}/
+        - else
+          %input#success.badgebox{:type => "checkbox", :name => "item_code"}/
+        %span.badge &check;
+      %label.btn.btn-warning{:for => "warning"}
+        Style
+        - if params['style'] == 'on'
+          %input#warning.badgebox{:type => "checkbox", :name => "style", :checked => 'checked'}/
+        - else
+          %input#warning.badgebox{:type => "checkbox", :name => "style"}/
+        %span.badge &check;
+      %button.btn.btn-default{:type => "submit"} Submit
+
+
   %table.table.table-striped
     %thead
       %tr
@@ -29,18 +71,20 @@
 
           %td
             - sum_of_soh_by_roh = 0
-            - last_sales = core_tracker_template.single_last_180days_saleqty.split(',')
-            - soh_array = core_tracker_template.single_soh.split(',')
-            - last_sales.each_with_index do |last_180days_saleqty, index|
-              - if last_180days_saleqty != "0"
-                - sum_of_soh_by_roh = sum_of_soh_by_roh + (soh_array[index].to_f / last_180days_saleqty.to_f * 180.00)
+            - if !core_tracker_template.single_last_180days_saleqty.nil?
+              - last_sales = core_tracker_template.single_last_180days_saleqty.split(',')
+              - soh_array = core_tracker_template.single_soh.split(',')
+              - last_sales.each_with_index do |last_180days_saleqty, index|
+                - if last_180days_saleqty != "0"
+                  - sum_of_soh_by_roh = sum_of_soh_by_roh + (soh_array[index].to_f / last_180days_saleqty.to_f * 180.00)
             = sum_of_soh_by_roh
           %td
             - sum_of_soh_oo_roh = 0
-            - last_sales = core_tracker_template.single_last_180days_saleqty.split(',')
-            - soh_array = core_tracker_template.single_soh.split(',')
-            - open_po_array = core_tracker_template.single_open_po.split(',')
-            - last_sales.each_with_index do |last_180days_saleqty, index|
-              - if last_180days_saleqty != "0"
-                - sum_of_soh_oo_roh = sum_of_soh_oo_roh + ((soh_array[index].to_f + open_po_array[index].to_f) / last_180days_saleqty.to_f * 180.00)
+            - if !core_tracker_template.single_last_180days_saleqty.nil?
+              - last_sales = core_tracker_template.single_last_180days_saleqty.split(',')
+              - soh_array = core_tracker_template.single_soh.split(',')
+              - open_po_array = core_tracker_template.single_open_po.split(',')
+              - last_sales.each_with_index do |last_180days_saleqty, index|
+                - if last_180days_saleqty != "0"
+                  - sum_of_soh_oo_roh = sum_of_soh_oo_roh + ((soh_array[index].to_f + open_po_array[index].to_f) / last_180days_saleqty.to_f * 180.00)
             = sum_of_soh_oo_roh
