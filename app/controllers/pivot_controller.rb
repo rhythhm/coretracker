@@ -13,8 +13,8 @@ class PivotController < ApplicationController
       table = table + " "
     end
 
-    if params[:store_code]
-      table = table + "store_code, "
+    if params[:category]
+      table = table + "category, "
     else
       table = table + " "
     end
@@ -42,7 +42,7 @@ class PivotController < ApplicationController
     end
 
     @core_tracker_templates = CoreTrackerTemplate.find(:all,
-                       :select => "brand_name, group_name,
+                       :select => "brand_name, group_name, category, item_code, style,
                        sum(core_tracker_templates.cy_saleqty) AS sum_cy_saleqty,
                        sum(soh) AS sum_soh,
                        sum(last_180days_saleqty) AS sum_last_180days_saleqty,
