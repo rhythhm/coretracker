@@ -20,11 +20,11 @@
           %input#danger.badgebox{:type => "checkbox", :name => "group_name"}/
         %span.badge &check;
       %label.btn.btn-info{:for => "info"}
-        Store Name
-        - if params['store_name'] == 'on'
-          %input#info.badgebox{:type => "checkbox", :name => "store_name", :checked => 'checked'}/
+        Category
+        - if params['category'] == 'on'
+          %input#info.badgebox{:type => "checkbox", :name => "category", :checked => 'checked'}/
         - else
-          %input#info.badgebox{:type => "checkbox", :name => "store_name"}/
+          %input#info.badgebox{:type => "checkbox", :name => "category"}/
         %span.badge &check;
       %label.btn.btn-success{:for => "success"}
         Item Code
@@ -48,6 +48,12 @@
       %tr{:style => "font-weight: bold"}
         %td Group Name
         %td Brand Name
+        - if params['category'] == 'on'
+          %td Category
+        - if params['item_code'] == 'on'
+          %td Item Code
+        - if params['style'] == 'on'
+          %td Style
         %td Sum of Current year Sales.
         %td Sum of SOH.
         %td Sum of Sales in last 180 days.
@@ -64,6 +70,15 @@
             = core_tracker_template.group_name
           %td
             = core_tracker_template.brand_name
+          - if params['category'] == 'on'
+            %td
+              = core_tracker_template.category
+          - if params['item_code'] == 'on'
+            %td
+              = core_tracker_template.item_code
+          - if params['style'] == 'on'
+            %td
+              = core_tracker_template.style
           %td
             = core_tracker_template.sum_cy_saleqty
           %td
