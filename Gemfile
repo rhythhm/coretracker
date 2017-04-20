@@ -40,7 +40,13 @@ gem 'rails_admin', '~> 1.0'
 # gem 'unicorn'
 gem 'rails_admin_rollincode', '~> 1.0'
 
-gem "chartkick"
+gem 'chartkick'
+gem 'groupdate'
+gem 'hightop'
+
+gem 'fusioncharts-rails'
+
+
 
 
 # Use Capistrano for deployment

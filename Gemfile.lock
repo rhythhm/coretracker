@@ -41,7 +41,6 @@ GEM
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-table-rails (1.11.1.1)
     builder (3.2.3)
     byebug (9.0.6)
     chartkick (2.2.3)
@@ -65,10 +64,15 @@ GEM
     execjs (2.7.0)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
+    fusioncharts-rails (0.0.2)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
     haml (4.0.7)
       tilt
+    hightop (0.2.0)
+      activerecord
     i18n (0.8.1)
     iconv (1.0.4)
     jbuilder (2.6.2)
@@ -209,11 +213,13 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-deprecated_finders
-  bootstrap-table-rails
   byebug
   chartkick
   coffee-rails (~> 4.1.0)
   devise
+  fusioncharts-rails
+  groupdate
+  hightop
   iconv (~> 1.0.3)
   jbuilder (~> 2.0)
   jquery-rails

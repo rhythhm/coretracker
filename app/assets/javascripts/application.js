@@ -14,6 +14,12 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require mindmup-editabletable
+//= require numeric-input-example
 //= require Chart.bundle
+//= require highcharts
+//= require fusioncharts
+//= require fusioncharts.charts
+//= require themes/fusioncharts.theme.fint
 //= require chartkick
 //= require_tree .
