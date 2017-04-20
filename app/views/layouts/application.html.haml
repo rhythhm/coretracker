@@ -1,0 +1,38 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title RangePlanner
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body{:style => "text-align: center; font-size: 12px;"}
+    .container{:style => "position: fixed; top: 0px; margin-left:60px;z-index: 10000;"}
+      %nav.navbar.navbar-default
+        .container-fluid
+          .navbar-header
+            %button.navbar-toggle.collapsed{"data-target" => "#navbar1", "data-toggle" => "collapse", :type => "button"}
+              %span.sr-only Toggle navigation
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.navbar-brand{:href => "/pivot"}
+              %img{:alt => "Dispute Bills", :src => "/assets/logo.svg", :style => "width:75px;"}/
+          #navbar1.navbar-collapse.collapse
+            %ul.nav.navbar-nav
+              %li{:class => "#{'active' if params[:controller] == 'graphs'}"}
+                %a{:href => "/graphs"} Graphs
+              %li{:class => "#{'active' if params[:controller] == 'pivot' && params[:action] == 'index'}"}
+                %a{:href => "/pivot"} Pivot Table
+              %li{:class => "#{'active' if params[:controller] == 'pivot' && params[:action] == 'pivot2'}"}
+                %a{:href => "/pivot2"} ARP with Zero
+              %li{:class => "#{'active' if params[:controller] == 'pivot' && params[:action] == 'pivot3'}"}
+                %a{:href => "/pivot3"} SOH less than ARP
+              %li
+                %a{:href => "/admin", :target => "_blank"} Admin
+
+          / /.nav-collapse
+        / /.container-fluid
+
+    .container{:style => "padding-top: 45px;"}
+      = yield

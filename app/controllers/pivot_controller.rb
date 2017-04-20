@@ -51,10 +51,6 @@ class PivotController < ApplicationController
                        GROUP_CONCAT(open_po, ',') AS single_open_po, count(arp_max>0) AS count_of_arp",
                        :group => "#{table}")
 
-    @zero_arp = CoreTrackerTemplate.where('arp_max = 0').find(:all,
-                       :select => "brand_name, group_name, category, style, color, sizee, item_code, arp_max, soh")
-    @soh_lessthan_arp = CoreTrackerTemplate.where('soh < arp_max').find(:all,
-                       :select => "brand_name, group_name, category, style, color, sizee, item_code, arp_max, soh")
 
     @data_to_show = []
     @core_tracker_templates.each do |core_tracker_template|
@@ -65,5 +61,38 @@ class PivotController < ApplicationController
       format.csv { send_data @final_plans.to_csv }
     end
   end
+
+  def pivot2
+    @zero_arp = CoreTrackerTemplate.where('arp_max = 0').find(:all,
+                       :select => "brand_name, group_name, category, style, color, sizee, item_code, arp_max, soh")
+    @soh_lessthan_arp = CoreTrackerTemplate.where('soh < arp_max').find(:all,
+                       :select => "brand_name, group_name, category, style, color, sizee, item_code, arp_max, soh")
+
+  end
+
+  def pivot2
+    @zero_arp = CoreTrackerTemplate.where('arp_max = 0').find(:all,
+                       :select => "brand_name, group_name, category, style, color, sizee, item_code, arp_max, soh")
+    @soh_lessthan_arp = CoreTrackerTemplate.where('soh < arp_max').find(:all,
+                       :select => "brand_name, group_name, category, style, color, sizee, item_code, arp_max, soh")
+
+  end
+
+  def pivot3
+    @zero_arp = CoreTrackerTemplate.where('arp_max = 0').find(:all,
+                       :select => "brand_name, group_name, category, style, color, sizee, item_code, arp_max, soh")
+    @soh_lessthan_arp = CoreTrackerTemplate.where('soh < arp_max').find(:all,
+                       :select => "brand_name, group_name, category, style, color, sizee, item_code, arp_max, soh")
+
+  end
+
+  def pivot4
+    @zero_arp = CoreTrackerTemplate.where('arp_max = 0').find(:all,
+                       :select => "brand_name, group_name, category, style, color, sizee, item_code, arp_max, soh")
+    @soh_lessthan_arp = CoreTrackerTemplate.where('soh < arp_max').find(:all,
+                       :select => "brand_name, group_name, category, style, color, sizee, item_code, arp_max, soh")
+
+  end
+
 end
 

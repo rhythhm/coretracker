@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: redirect('/admin')
+  root to: redirect('/graphs')
   devise_for :users
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   end
   resources :pivot do
   end
+
+  get 'pivot2', to: "pivot#pivot2"
+  get 'pivot3', to: "pivot#pivot3"
+  get 'pivot4', to: "pivot#pivot4"
 
 
   # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

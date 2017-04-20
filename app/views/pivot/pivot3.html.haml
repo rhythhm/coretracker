@@ -1,0 +1,43 @@
+.container
+  %h2 soh less than arp
+  %p soh<arp
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Brand Name
+        %th Group Name
+        %th Category
+        %th Style
+        %th Color
+        %th Sizee
+        %th Item code
+        %th SOH
+        %th ARP value
+
+
+
+    %tbody
+      - @soh_lessthan_arp.each do |soh_lessthan_arp|
+        %tr
+          %td
+            = soh_lessthan_arp.brand_name
+          %td
+            = soh_lessthan_arp.group_name
+          %td
+            = soh_lessthan_arp.category
+          %td
+            = soh_lessthan_arp.style
+          %td
+            = soh_lessthan_arp.color
+          %td
+            = soh_lessthan_arp.sizee
+          %td
+            = soh_lessthan_arp.item_code
+          %td
+            = soh_lessthan_arp.soh
+          %td
+            = soh_lessthan_arp.arp_max
+      %tr
+        %td
+          %b
+            = "TOTAL: " + @soh_lessthan_arp.count.to_s

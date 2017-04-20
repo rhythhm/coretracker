@@ -1,0 +1,42 @@
+.container
+  %h2 ARP with ZERO values
+  %p arp 0 values.
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Brand Name
+        %th Group Name
+        %th Category
+        %th Style
+        %th Color
+        %th Sizee
+        %th Item code
+        %th SOH
+        %th ARP value
+
+
+    %tbody
+      - @zero_arp.each do |zero_arp|
+        %tr
+          %td
+            = zero_arp.brand_name
+          %td
+            = zero_arp.group_name
+          %td
+            = zero_arp.category
+          %td
+            = zero_arp.style
+          %td
+            = zero_arp.color
+          %td
+            = zero_arp.sizee
+          %td
+            = zero_arp.item_code
+          %td
+            = zero_arp.soh
+          %td
+            = zero_arp.arp_max
+      %tr
+        %td
+          %b
+            = "TOTAL: " + @zero_arp.count.to_s

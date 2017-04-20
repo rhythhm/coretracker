@@ -1,0 +1,17 @@
+.container
+  %h2 Table number 2
+  %p Sample for availability
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Count arp
+        %th count soh
+        %th % of availability overall
+    %tbody
+      %tr
+        %td
+          = @count_of_arp
+        %td
+          = @count_of_arp_soh
+        %td
+          = (@count_of_arp_soh.to_f/@count_of_arp.to_f)*100
