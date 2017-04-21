@@ -22,7 +22,7 @@ class GraphsController < ApplicationController
     #   #@title = "User not signed in."
     # #end
       @chart = Fusioncharts::Chart.new({
-        :height => 600,
+        :height => 800,
         :width => 2500,
         :type => 'mscolumn2d',
         :renderAt => 'chart-container',
